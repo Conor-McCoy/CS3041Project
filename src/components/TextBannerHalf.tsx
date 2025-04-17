@@ -1,21 +1,23 @@
-type TextBannerProps = {
+type TextBannerHalfProps = {
     label: string;
     underline?: boolean;
+    onClick?: () => void;
+    className?: string;
 };
 
-function TextBanner({ label, underline = false}: TextBannerProps){
-
-    return(
-        <div className={"w-full max-w-[480px] bg-[#80A8FF] h-9 flex items-center justify-center"}>
+export default function TextBannerHalf({ label, underline = false, onClick, className = "" }: TextBannerHalfProps) {
+    return (
+        <div
+            className={`h-9 flex items-center justify-center hover:bg-[#A4C2FF] cursor-pointer transition ${className}`}
+            onClick={onClick}
+        >
             <span
-                className={`text-[#4C4C4C] font-bold uppercase text-3xl tracking-wide leading-none pb-[5px] ${
-                    underline ? 'underline underline-offset-[3px]' : ''
+                className={`font-bold uppercase text-sm tracking-wide leading-none pb-[2px] text-center ${
+                    underline ? "underline underline-offset-[3px]" : ""
                 }`}
             >
                 {label}
             </span>
         </div>
-    )
+    );
 }
-
-export default TextBanner

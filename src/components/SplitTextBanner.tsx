@@ -14,7 +14,7 @@ export default function SplitTextBanner({
     // Gap between boxes
     const GAP = 8; // px
     const TOTAL_WIDTH = 480; // match original max-w
-    const INDIVIDUAL_WIDTH = (TOTAL_WIDTH - GAP) / 2; // ~156px
+    const INDIVIDUAL_WIDTH = (TOTAL_WIDTH - GAP) / 2;
 
     return (
         <div
@@ -29,7 +29,7 @@ export default function SplitTextBanner({
                 style={{ width: `${INDIVIDUAL_WIDTH}px` }}
             >
         <span
-            className={`text-[#4C4C4C] font-bold uppercase text-sm tracking-wide leading-none pb-[2px] text-center ${
+            className={`text-[#3F425C] font-bold uppercase text-sm tracking-wide leading-none pb-[2px] text-center ${
                 underlineLeft ? 'underline underline-offset-[3px]' : ''
             }`}
         >
@@ -41,7 +41,7 @@ export default function SplitTextBanner({
                 style={{ width: `${INDIVIDUAL_WIDTH}px` }}
             >
         <span
-            className={`text-[#4C4C4C] font-bold uppercase text-sm tracking-wide leading-none pb-[2px] text-center ${
+            className={`text-[#3F425C] font-bold uppercase text-sm tracking-wide leading-none pb-[2px] text-center ${
                 underlineRight ? 'underline underline-offset-[3px]' : ''
             }`}
         >
