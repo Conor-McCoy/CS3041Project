@@ -4,7 +4,7 @@ type InstructionTextProps = {
 
 function InstructionText({ text }: InstructionTextProps) {
     return (
-        <p className="text-sm text-[#4C4C4C] max-w-[480px] leading-normal mb-1">
+        <p className="text-sm text-[#3F425C] w-full flex-1 min-w-0 leading-normal mb-1 text-center">
             {text}
         </p>
     );

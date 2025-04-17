@@ -27,17 +27,17 @@ export default function UploadButton({ onFileSelect }: UploadButtonProps) {
     };
 
     return (
-        <div className="w-full max-w-[480px]">
+        <div className="w-full flex-1 min-w-0">
             <div
                 className="w-full h-[320px] bg-[#D9D9D9] rounded-md flex flex-col items-center justify-center text-center px-4"
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
             >
                 <img src={UploadIcon} alt="Upload" className="w-12 h-12 mb-4" />
-                <p className="text-sm text-[#4B4B4B]">
+                <p className="text-sm text-[#3F425C]">
                     Drag and drop your resume here
                 </p>
-                <p className="text-sm text-[#4B4B4B] font-semibold">OR</p>
+                <p className="text-sm text-[#3F425C] font-semibold">OR</p>
                 <button
                     type="button"
                     onClick={() => inputRef.current?.click()}
@@ -56,7 +56,7 @@ export default function UploadButton({ onFileSelect }: UploadButtonProps) {
             />
 
             {fileName && (
-                <p className="mt-2 text-xs text-gray-700 truncate max-w-[480px]">{fileName}</p>
+                <p className="mt-2 text-xs text-[#3F425C] truncate max-w-[480px]">{fileName}</p>
             )}
         </div>
     );
