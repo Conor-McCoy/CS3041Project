@@ -34,13 +34,13 @@ function MainPage() {
                         <TextBannerHalf
                             label="Connect to Job Board"
                             underline
-                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md hover:brightness-100"
+                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md"
                             onClick={() => setActiveSidebar("jobBoard")}
                         />
                         <TextBannerHalf
                             label="Add Application Details"
                             underline
-                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md hover:brightness-100"
+                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md"
                             onClick={() => setActiveSidebar("jobListing")}
                         />
                     </div>
