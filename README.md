@@ -33,8 +33,8 @@ Portions of this project were developed with help from ChatGPT, particularly in 
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-project-directory>
+git clone https://github.com/Conor-McCoy/CS3041Project.git
+cd hifiprototype
 ```
 ### 2. Install Dependencies
 
