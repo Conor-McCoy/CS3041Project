@@ -8,7 +8,7 @@ type TextBannerHalfProps = {
 export default function TextBannerHalf({ label, underline = false, onClick, className = "" }: TextBannerHalfProps) {
     return (
         <div
-            className={`h-9 flex items-center justify-center hover:bg-[#A4C2FF] cursor-pointer transition ${className}`}
+            className={`h-9 flex items-center justify-center hover:bg-[#3B3BE5] cursor-pointer transition ${className}`}
             onClick={onClick}
         >
             <span
