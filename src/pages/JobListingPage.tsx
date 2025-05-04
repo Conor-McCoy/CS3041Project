@@ -13,7 +13,7 @@ export default function JobListingPage({ onClose }: Props) {
     const [details, setDetails] = useState("");
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full bg-[#ECECEC]">
             {/* Header with close button */}
             <div className="flex items-center justify-between pb-4">
                 <TextBannerDark label="Application Details" underline />
@@ -27,14 +27,14 @@ export default function JobListingPage({ onClose }: Props) {
             </div>
             <Divider />
 
-            <div className={"pb-4"}>
+            <div className={"py-4"}>
             <InstructionText
                 text="Provide details about the job you're applying to. This helps us tailor your resume feedback to match the role's specific requirements and expectations."
             />
             </div>
             <Divider />
 
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto pt-4">
                 <TextArea
                     placeholder="Enter details about the job listing..."
                     value={details}

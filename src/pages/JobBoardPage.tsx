@@ -10,7 +10,7 @@ type Props = {
 
 export default function JobBoardPage({ onClose }: Props) {
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full bg-[#ECECEC] pb-4">
             {/* Header with close button */}
             <div className="flex items-center justify-between pb-4">
                 <TextBannerDark label="Job Board Connection" underline />
@@ -25,7 +25,7 @@ export default function JobBoardPage({ onClose }: Props) {
             <Divider />
 
             {/* Scrollable connection options */}
-            <div className="flex-1 overflow-y-auto flex flex-col items-center gap-4">
+            <div className="flex-1 overflow-y-auto flex flex-col items-center gap-4 pt-4">
                 <InstructionText
                     text="Connect your LinkedIn or Indeed profile to help customize your resume
                     with relevant details pulled directly from your job history and skills."

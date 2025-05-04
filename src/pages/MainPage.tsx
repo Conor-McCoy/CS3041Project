@@ -1,4 +1,3 @@
-import TextBannerLight from "../components/TextBannerLight.tsx";
 import DropdownContent from "../components/DropdownContent.tsx";
 import UploadButton from "../components/UploadButton.tsx";
 import Divider from "../components/Divider";
@@ -7,11 +6,12 @@ import { useState } from "react";
 import JobBoardPage from "./JobBoardPage.tsx";
 import JobListingPage from "./JobListingPage.tsx";
 import CustomizeFeedback from "./CustomizeFeedback.tsx";
+import TextBannerDark from "../components/TextBannerDark.tsx";
 
 function MainPage() {
-    const [exclusiveSidebar, setExclusiveSidebar] = useState<"jobListing" | null>(null);
+    const [exclusiveSidebar, setExclusiveSidebar] = useState<"jobListing" | null>("jobListing");
     const [showFeedback, setShowFeedback] = useState(false);
-    const [showJobBoard, setShowJobBoard] = useState(false);
+    const [showJobBoard, setShowJobBoard] = useState(true);
 
     const toggleJobBoard = () => {
         setShowJobBoard((prev) => !prev);
@@ -28,24 +28,36 @@ function MainPage() {
     };
 
     const renderSidebar = (content: React.ReactNode) => (
-        <div className="w-full bg-[#ECECEC] rounded-lg px-4 py-6 shadow-lg overflow-hidden h-full flex flex-col">
+        <div className="w-full bg-[#ECECEC] rounded-lg px-6 py-6 shadow-md border border-gray-300 overflow-y-auto h-full flex flex-col">
             {content}
         </div>
     );
 
+    const hasSidebar = exclusiveSidebar || showFeedback || showJobBoard;
+
     return (
-        <div className="w-full min-h-screen bg-[#3F425C] py-10 px-4 flex justify-center">
+        <div className="w-full min-h-screen bg-[#3F425C] flex flex-col items-center justify-start">
+            {/* Optional top nav/header */}
+            <div className="w-full bg-[#2E3050] shadow-md py-4 mb-8">
+                <div className="max-w-[1100px] mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-white gap-2">
+                    <div>
+                        <h1 className="text-xl font-bold tracking-wide">Resume Analyzer</h1>
+                        <p className="text-sm text-gray-300">Upload your resume below to begin analysis</p>
+                    </div>
+                    <span className="text-sm text-gray-400">CS 3041 Final Project — Conor McCoy</span>
+                </div>
+            </div>
+
             <div
-                className={`flex flex-row items-start w-full px-4 max-w-[1100px] ${
-                    exclusiveSidebar || showFeedback || showJobBoard ? "gap-8 justify-start" : "justify-center"
-                }`}
+                className={`flex flex-row items-start w-full max-w-[1100px] ${hasSidebar ? "gap-8" : "gap-0 justify-center"} flex-wrap`}
             >
                 {/* Main Form */}
                 <div
-                    className={`h-[90vh] overflow-y-auto bg-[#ECECEC] rounded-lg px-4 pt-6 pb-4 flex flex-col items-center gap-4 ${
-                        exclusiveSidebar || showFeedback || showJobBoard ? "w-full max-w-[520px]" : "w-[520px]"
+                    className={`min-h-[90vh] overflow-y-auto bg-[#ECECEC] rounded-lg px-6 pt-6 pb-4 flex flex-col items-center gap-4 shadow-md border border-gray-300  ${
+                        hasSidebar ? "w-[520px]" : "flex-1 max-w-[960px]"
                     }`}
                 >
+
                     <UploadButton onFileSelect={(file) => console.log("Selected:", file?.name)} />
                     <Divider />
 
@@ -65,7 +77,7 @@ function MainPage() {
                     </div>
 
                     <Divider />
-                    <TextBannerLight label="Feedback" underline />
+                    <TextBannerDark label="Feedback" underline />
 
                     <DropdownContent
                         label="Spelling & Grammar"
@@ -116,28 +128,36 @@ function MainPage() {
                 </div>
 
                 {/* Sidebars */}
-                {(showJobBoard || exclusiveSidebar || showFeedback) && (
-                    <div className="flex flex-col w-full max-w-[520px] h-[90vh]">
+                {hasSidebar && (
+                    <div className={`flex flex-col w-full max-w-[520px] h-[90vh]`}>
                         {showJobBoard && (
-                            <div className={"flex-[0.35] pb-6"}>
+                            <div className={`pb-6 flex-[0.35]`}>
                                 {renderSidebar(<JobBoardPage onClose={() => setShowJobBoard(false)} />)}
                             </div>
                         )}
 
                         {exclusiveSidebar === "jobListing" && (
-                            <div className={"flex-[0.65]"}>
+                            <div className={`${showJobBoard ? "flex-[0.65]" : "h-full"}`}>
                                 {renderSidebar(<JobListingPage onClose={() => setExclusiveSidebar(null)} />)}
                             </div>
                         )}
 
                         {showFeedback && (
-                            <div className={"flex-[0.65]"}>
+                            <div className={`${showJobBoard ? "flex-[0.65]" : "h-full"}`}>
                                 {renderSidebar(<CustomizeFeedback onClose={() => setShowFeedback(false)} />)}
                             </div>
                         )}
                     </div>
                 )}
             </div>
+
+            {/* Footer */}
+            <footer className="mt-12 w-full text-center text-sm text-gray-300 bg-[#2E3050]">
+                <p className="py-4">
+                    Made for CS 3041 by Conor McCoy. Portions of this application were built with help from ChatGPT.
+                </p>
+            </footer>
+
         </div>
     );
 }

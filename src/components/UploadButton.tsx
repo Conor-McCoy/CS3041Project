@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import UploadIcon from "../assets/UploadIcon.png"; // Adjust path if needed
+import UploadIcon from "../assets/UploadIcon.png";
+import TextBannerDark from "./TextBannerDark.tsx";
 
 type UploadButtonProps = {
     onFileSelect?: (file: File | null) => void;
@@ -41,8 +42,11 @@ export default function UploadButton({ onFileSelect }: UploadButtonProps) {
 
     return (
         <div className="w-full flex-1 min-w-0">
-            <div
-                className="w-full h-[320px] bg-[#D9D9D9] rounded-md flex flex-col items-center justify-center text-center px-4"
+            <div className="pb-4">
+            <TextBannerDark label="Resume Upload" underline />
+            </div>
+                <div
+                className="w-full h-[240px] bg-[#D9D9D9] rounded-md flex flex-col items-center justify-center text-center px-4"
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
             >
