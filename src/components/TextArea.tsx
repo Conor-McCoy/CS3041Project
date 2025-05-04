@@ -10,8 +10,7 @@ function TextArea({ placeholder = "", value, onChange }: TextAreaProps) {
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            rows={8}
-            className="w-full flex-1 min-w-0 px-3 py-2 rounded-md bg-[#E6EBFA] text-sm text-[#3F425C] placeholder-[#9a9a9a] focus:outline-none border border-[#3F425C] resize-none"
+            className="w-full h-full min-w-0 px-3 py-2 rounded-md bg-[#E6EBFA] text-sm text-[#3F425C] placeholder-[#9a9a9a] focus:outline-none border border-[#3F425C] resize-none"
         />
     );
 }

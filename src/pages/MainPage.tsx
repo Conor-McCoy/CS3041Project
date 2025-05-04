@@ -1,54 +1,72 @@
 import TextBannerLight from "../components/TextBannerLight.tsx";
 import DropdownContent from "../components/DropdownContent.tsx";
-import Checkboxes from "../components/Checkboxes.tsx";
 import UploadButton from "../components/UploadButton.tsx";
-import TextArea from "../components/TextArea.tsx";
-import InstructionText from "../components/InstructionText.tsx";
 import Divider from "../components/Divider";
 import TextBannerHalf from "../components/TextBannerHalf.tsx";
-import {useState} from "react";
+import { useState } from "react";
 import JobBoardPage from "./JobBoardPage.tsx";
 import JobListingPage from "./JobListingPage.tsx";
-import TextBannerDark from "../components/TextBannerDark.tsx";
-import UpdateButton from "../components/UpdateButton.tsx";
+import CustomizeFeedback from "./CustomizeFeedback.tsx";
 
 function MainPage() {
-    const [activeSidebar, setActiveSidebar] = useState<"jobBoard" | "jobListing" | null>(null);
-    const [customFeedback, setCustomFeedback] = useState("");
+    const [exclusiveSidebar, setExclusiveSidebar] = useState<"jobListing" | null>(null);
+    const [showFeedback, setShowFeedback] = useState(false);
+    const [showJobBoard, setShowJobBoard] = useState(false);
+
+    const toggleJobBoard = () => {
+        setShowJobBoard((prev) => !prev);
+    };
+
+    const toggleExclusive = (type: "jobListing") => {
+        setShowFeedback(false);
+        setExclusiveSidebar((prev) => (prev === type ? null : type));
+    };
+
+    const toggleFeedback = () => {
+        setExclusiveSidebar(null);
+        setShowFeedback((prev) => !prev);
+    };
+
+    const renderSidebar = (content: React.ReactNode) => (
+        <div className="w-full bg-[#ECECEC] rounded-lg px-4 py-6 shadow-lg overflow-hidden h-full flex flex-col">
+            {content}
+        </div>
+    );
 
     return (
-        <div className="w-full min-h-screen bg-[#3F425C] py-10 flex justify-center">
+        <div className="w-full min-h-screen bg-[#3F425C] py-10 px-4 flex justify-center">
             <div
                 className={`flex flex-row items-start w-full px-4 max-w-[1100px] ${
-                    activeSidebar ? "gap-8 justify-start" : "justify-center"
+                    exclusiveSidebar || showFeedback || showJobBoard ? "gap-8 justify-start" : "justify-center"
                 }`}
             >
-                {/* Main Page — always rendered */}
-                <div className="w-full max-w-[520px] bg-[#ECECEC] rounded-lg px-4 py-6 flex flex-col items-center gap-4 h-auto">
-                    {/* Upload Button */}
+                {/* Main Form */}
+                <div
+                    className={`h-[90vh] overflow-y-auto bg-[#ECECEC] rounded-lg px-4 pt-6 pb-4 flex flex-col items-center gap-4 ${
+                        exclusiveSidebar || showFeedback || showJobBoard ? "w-full max-w-[520px]" : "w-[520px]"
+                    }`}
+                >
                     <UploadButton onFileSelect={(file) => console.log("Selected:", file?.name)} />
-
                     <Divider />
 
                     <div className="flex w-full gap-2">
                         <TextBannerHalf
                             label="Connect to Job Board"
                             underline
-                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md"
-                            onClick={() => setActiveSidebar("jobBoard")}
+                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md p-4"
+                            onClick={toggleJobBoard}
                         />
                         <TextBannerHalf
                             label="Add Application Details"
                             underline
-                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md"
-                            onClick={() => setActiveSidebar("jobListing")}
+                            className="w-[calc(50%-4px)] bg-[#1F1FC2] text-white rounded-md p-4"
+                            onClick={() => toggleExclusive("jobListing")}
                         />
                     </div>
 
                     <Divider />
                     <TextBannerLight label="Feedback" underline />
 
-                    {/* Dropdowns */}
                     <DropdownContent
                         label="Spelling & Grammar"
                         content={[
@@ -87,51 +105,39 @@ function MainPage() {
                             "If you're open to multiple types of roles, think about tailoring different versions of your resume for each one",
                         ]}
                     />
-
                     <Divider />
-                    <InstructionText text="Customize feedback by selecting sections below and describing what type of feedback you are looking for:" />
-
-                    <Checkboxes
-                        options={["Education", "Work Experience", "Skills", "Projects"]}
-                        onChange={(selected) => console.log("Selected:", selected)}
+                    <TextBannerHalf
+                        label="Customize Feedback"
+                        underline
+                        className="w-full bg-[#1F1FC2] text-white rounded-md p-4"
+                        onClick={toggleFeedback}
                     />
-
-                    <TextArea
-                        placeholder="Customize feedback..."
-                        value={customFeedback}
-                        onChange={(e) => setCustomFeedback(e.target.value)}
-                    />
-
-                    <UpdateButton label="Update Feedback" onClick={() => setCustomFeedback("")} />
+                    <Divider />
                 </div>
 
-                {/* Sidebar Panel — conditionally rendered */}
-                {activeSidebar && (
-                    <div className="w-full max-w-[520px] bg-[#ECECEC] rounded-lg px-4 py-6 shadow-lg overflow-y-auto max-h-[90vh]">
-                        <div className="flex items-center justify-between mb-4 h-9">
-                            <div className="flex-1 min-w-0 pl-8">
-                                <TextBannerDark
-                                    label={activeSidebar === "jobBoard" ? "Job Board Connection" : "Application Details"}
-                                    underline
-                                />
+                {/* Sidebars */}
+                {(showJobBoard || exclusiveSidebar || showFeedback) && (
+                    <div className="flex flex-col w-full max-w-[520px] h-[90vh]">
+                        {showJobBoard && (
+                            <div className={"flex-[0.35] pb-6"}>
+                                {renderSidebar(<JobBoardPage onClose={() => setShowJobBoard(false)} />)}
                             </div>
-                            <button
-                                className="text-3xl text-gray-600 hover:text-black px-2 mt-[-6px]"
-                                onClick={() => setActiveSidebar(null)}
-                                aria-label="Close"
-                            >
-                                &times;
-                            </button>
-                        </div>
+                        )}
 
-                        <Divider />
+                        {exclusiveSidebar === "jobListing" && (
+                            <div className={"flex-[0.65]"}>
+                                {renderSidebar(<JobListingPage onClose={() => setExclusiveSidebar(null)} />)}
+                            </div>
+                        )}
 
-                        {activeSidebar === "jobBoard" && <JobBoardPage />}
-                        {activeSidebar === "jobListing" && <JobListingPage />}
+                        {showFeedback && (
+                            <div className={"flex-[0.65]"}>
+                                {renderSidebar(<CustomizeFeedback onClose={() => setShowFeedback(false)} />)}
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
-
         </div>
     );
 }
