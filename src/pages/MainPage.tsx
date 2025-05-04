@@ -153,9 +153,13 @@ function MainPage() {
 
             {/* Footer */}
             <footer className="mt-12 w-full text-center text-sm text-gray-300 bg-[#2E3050]">
-                <p className="py-4">
+                <p className="pt-4 pb-2  italic text-gray-400">
+                    ⚠️ This is a high-fidelity prototype built for academic purposes. The application is not fully functional. ⚠️
+                </p>
+                <p className="pb-4">
                     Made for CS 3041 by Conor McCoy. Portions of this application were built with help from ChatGPT.
                 </p>
+
             </footer>
 
         </div>

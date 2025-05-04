@@ -1,54 +1,60 @@
-# React + TypeScript + Vite
+# Resume Analyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Author:** Conor McCoy  
+**Course:** CS3041 — Human-Computer Interaction  
+**Instructor:** Professor Harrison Lane  
+**Project Type:** Final Project (Hi-Fi Prototype)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📄 Overview
 
-## Expanding the ESLint configuration
+**Resume Analyzer** is a high-fidelity prototype built for the CS3041 final project. It allows users to upload a resume and receive automated suggestions in several categories, such as:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Spelling & Grammar
+- Spacing & Formatting
+- Content & Flow
+- Additional Suggestions
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+The interface also supports job board integration and user-customized feedback to simulate tailoring resumes for specific applications.
+
+> **Note:** This is not a fully functional product — it is a **hi-fi prototype** designed for usability evaluation and interaction design purposes.
+
+---
+
+## 🧠 AI Assistance Disclosure
+
+Portions of this project were developed with help from ChatGPT, particularly in refining UI layout logic, component structuring, and debugging layout responsiveness.
+
+---
+
+## 🛠️ How to Run the Project
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd <your-project-directory>
+```
+### 2. Install Dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Start the Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+By default, the application will be available at:
+http://localhost:5173
+
+📎 Notes
+
+    This project includes no backend or persistent storage.
+
+    Built with React + Tailwind CSS.
+
+    Intended solely for demonstrating UI design and interaction.
