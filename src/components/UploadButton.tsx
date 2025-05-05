@@ -77,14 +77,14 @@ export default function UploadButton({ onFileSelect }: UploadButtonProps) {
                     <span className="absolute left-0 truncate max-w-[150px]">{file.name}</span>
                     <button
                         type="button"
-                        className="absolute left-1/2 -translate-x-1/2 text-[#80a8ff] underline"
+                        className="absolute left-1/2 -translate-x-1/2 text-[#80a8ff] underline cursor-pointer"
                         onClick={() => setPreviewOpen(true)}
                     >
                         Preview File
                     </button>
                     <button
                         type="button"
-                        className="absolute right-0 text-red-500 underline"
+                        className="absolute right-0 text-red-500 underline cursor-pointer"
                         onClick={removeFile}
                     >
                         Remove File
@@ -98,7 +98,7 @@ export default function UploadButton({ onFileSelect }: UploadButtonProps) {
                     className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center"
                     onClick={handleOverlayClick}
                 >
-                    <div className="bg-[#ececec] rounded-md shadow-lg w-full max-w-3xl min-h-[80vh] relative overflow-y-auto p-6">
+                    <div className="bg-[#ececec] rounded-md shadow-lg w-full max-w-3xl min-h-[80vh] relative overflow-y-auto p-6 cursor-pointer">
                         <button
                             onClick={() => setPreviewOpen(false)}
                             className="absolute top-2 right-3 text-gray-500 hover:text-black"
