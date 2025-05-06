@@ -36,7 +36,7 @@ function MainPage() {
     const hasSidebar = exclusiveSidebar || showFeedback || showJobBoard;
 
     return (
-        <div className="w-full min-h-screen bg-[#3F425C] flex flex-col items-center justify-start">
+        <div className="w-full min-h-screen bg-[#d9dbdc] flex flex-col items-center justify-start">
             {/* Optional top nav/header */}
             <div className="w-full bg-[#2E3050] shadow-md py-4 mb-8">
                 <div className="max-w-[1100px] mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-white gap-2">
